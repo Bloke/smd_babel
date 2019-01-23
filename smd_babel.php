@@ -17,7 +17,7 @@ $plugin['name'] = 'smd_babel';
 // 1 = Plugin help is in raw HTML.  Not recommended.
 # $plugin['allow_html_help'] = 1;
 
-$plugin['version'] = '1.0.0';
+$plugin['version'] = '1.0.1';
 $plugin['author'] = 'Stef Dawson';
 $plugin['author_uri'] = 'https://stefdawson.com/';
 $plugin['description'] = 'Manage language translation strings from the Textpattern admin panel';
