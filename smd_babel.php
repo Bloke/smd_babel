@@ -70,7 +70,7 @@ smd_babel_lang_xlate => Translated language
 smd_babel_language_not_installed => Language <strong>{name}</strong> not installed.
 smd_babel_string_deleted => String <strong>{name}</strong> deleted.
 smd_babel_string_updated => String <strong>{name}</strong> updated.
-smd_babel_value => Language
+smd_babel_value => Translation string
 tab_smd_babel => Translations
 EOT;
 
