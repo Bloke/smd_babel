@@ -565,7 +565,7 @@ EOJS
         $key = ps('key');
 
         $grpClause = ($grp) ? " AND event IN (".implode(',', quote_list(do_list($grp))).")" : '';
-        $keyClause = ($key) ? " AND name LIKE '" . doSlash($key) . "%'" : '';
+        $keyClause = ($key) ? " AND name LIKE '%" . doSlash($key) . "%'" : '';
         $rs = safe_rows('event, name, data', 'txp_lang', "lang='".doSlash($lng)."'".$grpClause.$keyClause." ORDER BY event, name");
 
         $out = $this->createIni($rs);
@@ -737,7 +737,7 @@ To download the strings into a file, click the _Export_ button. A popup box will
 
 * The group of strings you wish to download. Specify a comma-separated list of groups here, or empty the box if you wish to download all strings.
 * The language of the strings you wish to export.
-* A string prefix (key).
+* A string (key) match.
 
 Once you have selected the criteria, click _Download_ to save the file to your computer.
 
@@ -747,7 +747,7 @@ For example, if you wished to download all strings used by this plugin you would
 * Lang: @English@
 * Key: @smd_babel@
 
-That ensures you only get the key prefixed with @smd_babel@ from the admin-side group, otherwise you'd get all of the strings from this group - core and other plugins included.
+That ensures you only get the keys matching @smd_babel@ from the admin-side group, otherwise you'd get all of the strings from this group - core and other plugins included.
 
 # --- END PLUGIN HELP ---
 -->
