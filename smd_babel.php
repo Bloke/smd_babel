@@ -17,7 +17,7 @@ $plugin['name'] = 'smd_babel';
 // 1 = Plugin help is in raw HTML.  Not recommended.
 # $plugin['allow_html_help'] = 1;
 
-$plugin['version'] = '1.0.1';
+$plugin['version'] = '1.0.2';
 $plugin['author'] = 'Stef Dawson';
 $plugin['author_uri'] = 'https://stefdawson.com/';
 $plugin['description'] = 'Manage language translation strings from the Textpattern admin panel';
@@ -205,6 +205,7 @@ EOCSS;
                     inputLabel('group', fInput('text', array('name' => 'group', 'required' => 1), $group), 'smd_babel_group').
                     inputLabel('lang', selectInput('lang', $installed, $selectedLang, false), 'smd_babel_lang').
                     inputLabel('value', fInput('text', array('name' => 'value', 'required' => 1), ''), 'smd_babel_value').
+                    hInput('smd_babel_added', '1').
                     fInput('submit', 'smd_babel_submit', gTxt('save'))
                     .eInput($this->event)
                     .sInput('save'),
@@ -297,7 +298,7 @@ jQuery(function() {
         dialogClass: 'txp-tagbuilder-container',
         autoOpen: false,
         focus: function (ev, ui) {
-            $(ev.target).closest('.ui-dialog').focus();
+            $(ev.target).closest('.ui-dialog input').focus();
         }
     });
 
@@ -489,6 +490,7 @@ EOJS
         $lng = ps('lang');
         $grp = ps('group');
         $val = ps('value');
+        $isAdd = ps('smd_babel_added');
 
         $langObj = Txp::get('\Textpattern\L10n\Lang');
         $installed = $langObj->installed();
@@ -510,8 +512,13 @@ EOJS
             }
         }
 
-        // @todo Figure out how to make the message appear.
-        echo json_encode(array('msg' => $msg));
+        if ($isAdd) {
+            // Ajax form submission.
+            send_script_response('textpattern.Console.addMessage(['.json_encode($msg, TEXTPATTERN_JSON).', 0], "smd_babel").announce("smd_babel");').n;
+        } else {
+            // JSON Ajax call.
+            echo json_encode(array('msg' => $msg));
+        }
 
         return;
     }
