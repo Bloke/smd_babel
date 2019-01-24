@@ -17,7 +17,7 @@ $plugin['name'] = 'smd_babel';
 // 1 = Plugin help is in raw HTML.  Not recommended.
 # $plugin['allow_html_help'] = 1;
 
-$plugin['version'] = '1.0.2';
+$plugin['version'] = '1.0.3';
 $plugin['author'] = 'Stef Dawson';
 $plugin['author_uri'] = 'https://stefdawson.com/';
 $plugin['description'] = 'Manage language translation strings from the Textpattern admin panel';
@@ -72,6 +72,23 @@ smd_babel_string_deleted => String <strong>{name}</strong> deleted.
 smd_babel_string_updated => String <strong>{name}</strong> updated.
 smd_babel_value => Translation string
 tab_smd_babel => Translations
+#@language fr
+#@admin-side
+smd_babel => Traductions
+#@smd_babel
+smd_babel_add_string => Ajouter une chaîne de traduction
+smd_babel_export_strings => Exporter les chaînes
+smd_babel_group => Groupe
+smd_babel_key => Clé
+smd_babel_lang => Langue
+smd_babel_lang_site => Langue du site public
+smd_babel_lang_ui => Langue de l’administration
+smd_babel_lang_xlate => Sélection de la langue
+smd_babel_language_not_installed => Langue {name} non installée.
+smd_babel_string_deleted => Chaîne {name} supprimée.
+smd_babel_string_updated => Chaîne {name} mise à jour.
+smd_babel_value => Chaîne de traduction
+tab_smd_babel => Traductions
 EOT;
 
 if (!defined('txpinterface'))
@@ -420,7 +437,7 @@ jQuery(function() {
                         selectedLang = lng;
                         link = '<textarea name="'+key+'" class="smd_babel_string" data-lang="'+lng+'">'+strings[lng][idx]+'</textarea>';
                     } else {
-                        link = (jdx === 0 && (canDelete ? '<a class="smd_babel_delete ui-icon ui-icon-close" data-key="'+key+'">x</a>': '')) + strings[lng][idx] + ((jdx === 0) ? '<br/><span class="txp-form-field-instructions">' + key + '</span>': '');
+                        link = (jdx === 0 && (canDelete ? '<a class="smd_babel_delete ui-icon ui-icon-close" data-key="'+key+'">x</a>&nbsp;' : '')) + strings[lng][idx] + ((jdx === 0) ? '<br/><span class="txp-form-field-instructions">' + key + '</span>': '');
                     }
                     row.push('<td>'+ link + '</td>');
                 });
@@ -705,11 +722,11 @@ h3. Group selector
 
 All strings are separated into groups (a.k.a events). For core strings, these usually equate to the panel names, e.g. 'image' for the strings that are used on the Images panel, 'admin' for those that appear on the Users panel, and so on.
 
-Plugins normally group strings by their plugin name. There are three special group
+Plugins normally group strings by their plugin name. There are three special groups:
 
-# @admin-side@: Strings in this group are available across the _entire_ administration side. Usual things here are menu styrings, or items that are used on more than one panel.
-# @public@: Strings that are only loaded on the public site.
-# @common@: Strings that are common to both the entire admin-side AND are loaded on the public website.
+# @admin-side@: Strings in this group are available across the _entire_ administration side. Usual things here are menu styrings, or items that are used on more than one panel.
+# @public@: Strings that are only loaded on the public site.
+# @common@: Strings that are common to both the entire admin-side AND are loaded on the public website.
 
 When choosing a group, use the most appropriate group for the task. Don't just assign everything to @common@ because that bulks up the amount of data sent on every page request, which slows down the website.
 
@@ -719,9 +736,9 @@ h3. Translation table
 
 This is where translation takes place, and it's sub-divided in up to three columns:
 
-# Site language: your default site language for the website is shown in the first column. This includes all translations for the keys in that group, and it also shows beneath each translation the key itself (for reference).
-# Admin language: if your administration site language differs for your public website, the central column will appear that shows you translations for the currently selected group in your native amdin language.
-# Translation language: the final column is selectable. At the top is a language dropdown. Choose a language to load all the strings for that language into this column. Make amendments to any strings in the textareas. Simply altering the content and tabbing out of the box will commit the changes to the database for that string immediately. Be careful!
+# Site language: your default site language for the website is shown in the first column. This includes all translations for the keys in that group, and it also shows beneath each translation the key itself (for reference).
+# Admin language: if your administration site language differs for your public website, the central column will appear that shows you translations for the currently selected group in your native admin language.
+# Translation language: the final column is selectable. At the top is a language dropdown. Choose a language to load all the strings for that language into this column. Make amendments to any strings in the textareas. Simply altering the content and tabbing out of the box will commit the changes to the database for that string immediately.
 
 You can switch language in the third column, or change groups at any time to update whichever strings are already present across the entire system.
 
