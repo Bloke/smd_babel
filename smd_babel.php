@@ -17,7 +17,7 @@ $plugin['name'] = 'smd_babel';
 // 1 = Plugin help is in raw HTML.  Not recommended.
 # $plugin['allow_html_help'] = 1;
 
-$plugin['version'] = '1.0.3';
+$plugin['version'] = '1.0.4';
 $plugin['author'] = 'Stef Dawson';
 $plugin['author_uri'] = 'https://stefdawson.com/';
 $plugin['description'] = 'Manage language translation strings from the Textpattern admin panel';
@@ -437,7 +437,7 @@ jQuery(function() {
                         selectedLang = lng;
                         link = '<textarea name="'+key+'" class="smd_babel_string" data-lang="'+lng+'">'+strings[lng][idx]+'</textarea>';
                     } else {
-                        link = (jdx === 0 && (canDelete ? '<a class="smd_babel_delete ui-icon ui-icon-close" data-key="'+key+'">x</a>&nbsp;' : '')) + strings[lng][idx] + ((jdx === 0) ? '<br/><span class="txp-form-field-instructions">' + key + '</span>': '');
+                        link = ((jdx === 0 && canDelete) ? '<a class="smd_babel_delete ui-icon ui-icon-close" data-key="'+key+'">x</a>&nbsp;' : '') + strings[lng][idx] + ((jdx === 0) ? '<br/><span class="txp-form-field-instructions">' + key + '</span>': '');
                     }
                     row.push('<td>'+ link + '</td>');
                 });
