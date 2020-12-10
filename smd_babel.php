@@ -724,7 +724,7 @@ All strings are separated into groups (a.k.a events). For core strings, these us
 
 Plugins normally group strings by their plugin name. There are three special groups:
 
-# @admin-side@: Strings in this group are available across the _entire_ administration side. Usual things here are menu styrings, or items that are used on more than one panel.
+# @admin-side@: Strings in this group are available across the _entire_ administration side. Usual things here are menu strings, or items that are used on more than one panel.
 # @public@: Strings that are only loaded on the public site.
 # @common@: Strings that are common to both the entire admin-side AND are loaded on the public website.
 
