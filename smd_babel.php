@@ -518,7 +518,7 @@ EOJS
         } else {
             $ret = safe_upsert(
                 'txp_lang',
-                array('data' => $val, 'event' => $grp, 'lastmod' => 'NOW()', 'owner' => TEXTPATTERN_LANG_OWNER_SITE),
+                "data = '$val', event = '$grp', lastmod = NOW(), owner = '".TEXTPATTERN_LANG_OWNER_SITE."'",
                 array('name' => $key, 'lang' => $lng)
             );
 
@@ -627,7 +627,7 @@ EOJS
 
             safe_upsert(
                 'txp_lang',
-                array('event' => $grp, 'lastmod' => 'NOW()', 'owner' => TEXTPATTERN_LANG_OWNER_SITE),
+                "event = '$grp', lastmod = NOW(), owner = '".TEXTPATTERN_LANG_OWNER_SITE."'",
                 array('name' => $key, 'lang' => $lang)
             );
         }
